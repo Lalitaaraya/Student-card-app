@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Signup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+    <!-- Image Background -->
+    <div class="image-side"></div>
+
+    <!-- Form Section -->
+    <div class="form-side">
+        <div class="container">
+            <h2>Student Signup Form</h2>
+
+            <div class="count">
+                Total Students Registered:
+                <span id="studentCount">0</span>
+            </div>
+
+            <form id="signupForm">
+                <div class="field">
+                    <label>First Name <span class="required">*</span></label>
+                    <input type="text" id="first_name" name="first_name" required>
+                    <div class="error-message" id="firstNameError"></div>
+                </div>
+
+                <div class="field">
+                    <label>Middle Name</label>
+                    <input type="text" id="middle_name" name="middle_name">
+                </div>
+
+                <div class="field">
+                    <label>Last Name <span class="required">*</span></label>
+                    <input type="text" id="last_name" name="last_name" required>
+                    <div class="error-message" id="lastNameError"></div>
+                </div>
+
+                <div class="field">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="10 digit number" pattern="\d{10}" required>
+                    <div class="error-message" id="phoneError"></div>
+                </div>
+
+                <div class="field">
+                    <label>Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="field">
+                    <label>Alternate Phone</label>
+                    <input type="tel" id="alt_phone" name="alt_phone" placeholder="10 digit number" pattern="\d{10}">
+                    <div class="error-message" id="altPhoneError"></div>
+                </div>
+
+                <div class="field">
+                    <label>Company</label>
+                    <input type="text" id="company" name="company" placeholder="e.g., Birdhouse Construction pty ltd">
+                </div>
+
+                <div class="field">
+                    <label>Upload Photo (optional)</label>
+                    <input type="file" id="photoUpload" name="photo" accept="image/*">
+                    <small class="hint">Max 5MB. Accepts: JPG, PNG, GIF. If no photo is uploaded, a DiceBear Human avatar will be generated.</small>
+                    
+                    <!-- Photo Preview -->
+                    <div id="photoPreview" style="margin-top: 10px; display: none;">
+                        <img src="" alt="Photo Preview" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #00ffcc;">
+                    </div>
+                    
+                    <!-- Photo Error -->
+                    <div class="error-message" id="photoError"></div>
+                </div>
+
+                <button type="submit" id="registerBtn">Register</button>
+                
+                <!-- View Students Button -->
+                <div style="margin-top: 20px; text-align: center;">
+                    <a href="students.html" style="color: #00ffcc; text-decoration: none; font-weight: 600; display: inline-block; padding: 10px 20px; border: 2px solid #00ffcc; border-radius: 8px;">
+                        👥 View All Students
+                    </a>
+                </div>
+            </form>
+
+            <div class="success" id="successMessage">
+                ✓ Student registered successfully! 
+                <a href="students.html" style="color: #00ffcc; text-decoration: none; margin-left: 10px;">View Students →</a>
+            </div>
+
+            <!-- Show recent students on same page -->
+            <div id="cardsSection">
+                <h3>Recently Registered Students</h3>
+                <div id="cardsContainer" class="cards-container"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

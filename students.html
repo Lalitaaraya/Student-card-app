@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registered Students</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <div class="image-side"></div>
+    <div class="form-side">
+      <div class="container">
+        <h2>Registered Students</h2>
+        <div class="count">Total Students Registered: <span id="studentCount">0</span></div>
+        
+        <!-- Search and Filter -->
+        <div style="margin-bottom: 20px;">
+          <input type="text" id="searchInput" placeholder="Search students..." 
+                 style="width: 100%; padding: 12px; border-radius: 10px; border: none; font-size: 15px;">
+        </div>
+        
+        <div id="cardsContainer" class="cards-container"></div>
+        
+        <div style="margin-top: 20px; text-align: center;">
+          <a href="form.html" style="color: #00ffcc; text-decoration: none; font-weight: 600;">
+            ← Back to Registration Form
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="students.js"></script>
+</body>
+</html>
