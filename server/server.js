@@ -48,24 +48,25 @@ async function getPool() {
 }
 
 // Function to generate DiceBear human avatar (using PNG format)
-function generateHumanAvatar(firstName, lastName) {
+// Accepts optional seedOverride to deterministically generate avatar from image hash or other seed
+function generateHumanAvatar(firstName, lastName, seedOverride) {
   try {
-    // Create a seed from the user's name
-    const seed = `${firstName || 'user'}${lastName || Math.random().toString(36).substring(2)}`;
+    // Use provided seedOverride if present, otherwise create a seed from the user's name
+    const seed = seedOverride || `${firstName || 'user'}${lastName || Math.random().toString(36).substring(2)}`;
     const encodedSeed = encodeURIComponent(seed);
     
     // Generate avatar using Avataaars style (most reliable)
     const avatarUrl = `https://api.dicebear.com/7.x/avataaars/png?seed=${encodedSeed}&backgroundColor=b6e3f4,c0aede,d1d4f9&backgroundType=gradientLinear`;
     
-    console.log(`🎭 Generated avatar for ${firstName} ${lastName}: ${avatarUrl}`);
+    console.log(`🎭 Generated avatar for ${firstName} ${lastName} (seed: ${seed}): ${avatarUrl}`);
     return avatarUrl;
   } catch (error) {
     console.error('Avatar generation error:', error);
     // Fallback
-    const fallbackSeed = encodeURIComponent(`${firstName || 'user'}${lastName || 'avatar'}`);
+    const fallbackSeed = encodeURIComponent(seedOverride || `${firstName || 'user'}${lastName || 'avatar'}`);
     return `https://api.dicebear.com/7.x/avataaars/png?seed=${fallbackSeed}`;
   }
-}
+} 
 
 // Health endpoint
 app.get('/api/health', (req, res) => {
@@ -157,13 +158,18 @@ app.post('/api/students', async (req, res) => {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
-    // Generate avatar if no photo provided
-    let photoData = photo;
-    if (!photoData || photoData.trim() === '' || photoData === 'null') {
-      photoData = generateHumanAvatar(first_name, last_name);
-      console.log('🎭 Generated avatar:', photoData);
+    // If a photo was uploaded, use its content to generate a deterministic seed for DiceBear.
+    let photoData;
+    if (photo && photo.trim() !== '' && photo !== 'null') {
+      // Hash the photo content (base64/data URL) to create a stable seed
+      const crypto = require('crypto');
+      const hash = crypto.createHash('sha256').update(photo).digest('hex');
+      const seed = `${first_name || 'user'}${last_name || ''}${hash}`;
+      photoData = generateHumanAvatar(first_name, last_name, seed);
+      console.log('🎭 Generated DiceBear avatar from uploaded photo seed:', photoData);
     } else {
-      console.log('📸 Using provided photo');
+      photoData = generateHumanAvatar(first_name, last_name);
+      console.log('🎭 Generated DiceBear avatar (name-based):', photoData);
     }
 
     // Insert into database

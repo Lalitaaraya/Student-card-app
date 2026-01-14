@@ -273,6 +273,7 @@ button:disabled {
 }
 
 .facecard {
+    position: relative;
     display: flex;
     gap: 16px;
     align-items: center;
@@ -290,6 +291,27 @@ button:disabled {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     background: rgba(255, 255, 255, 0.2);
+}
+
+.cards-summary {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+.card-badge {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Avatar as IMG tag */

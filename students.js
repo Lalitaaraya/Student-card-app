@@ -50,10 +50,18 @@ async function fetchStudents() {
             allStudents = await response.json();
             console.log(`✅ Fetched ${allStudents.length} students`);
             
-            // Update student count
+            // Update student count and summary
             const studentCountLabel = document.getElementById('studentCount');
+            const totalCountLabel = document.getElementById('totalCount');
+            const visibleCountLabel = document.getElementById('visibleCount');
             if (studentCountLabel) {
                 studentCountLabel.textContent = allStudents.length;
+            }
+            if (totalCountLabel) {
+                totalCountLabel.textContent = allStudents.length;
+            }
+            if (visibleCountLabel) {
+                visibleCountLabel.textContent = allStudents.length;
             }
             
             displayStudents(allStudents);
@@ -73,6 +81,12 @@ function displayStudents(students) {
     
     cardsContainer.innerHTML = '';
     
+    // Update visible/total summary
+    const visibleCountLabel = document.getElementById('visibleCount');
+    const totalCountLabel = document.getElementById('totalCount');
+    if (visibleCountLabel) visibleCountLabel.textContent = students.length;
+    if (totalCountLabel) totalCountLabel.textContent = allStudents.length;
+
     if (students.length === 0) {
         cardsContainer.innerHTML = `
             <div style="text-align: center; padding: 40px; color: rgba(255,255,255,0.7);">
@@ -87,9 +101,15 @@ function displayStudents(students) {
     
     console.log(`🎨 Displaying ${students.length} students`);
     
-    students.forEach(student => {
+    students.forEach((student, idx) => {
         const card = document.createElement('div');
         card.className = 'facecard';
+        
+        // Badge showing position in the current list
+        const badge = document.createElement('div');
+        badge.className = 'card-badge';
+        badge.textContent = `#${idx + 1}`;
+        card.appendChild(badge);
         
         // Create avatar as IMG tag
         const avatar = document.createElement('img');
