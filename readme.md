@@ -129,7 +129,7 @@ Create a `.env` file inside `server/`:
 ```
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=your_password
+DB_PASSWORD=Got@123#
 DB_NAME=techoon
 PORT=3000
 ```
