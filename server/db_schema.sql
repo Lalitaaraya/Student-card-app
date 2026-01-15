@@ -13,7 +13,13 @@ CREATE TABLE IF NOT EXISTS students (
   alt_phone VARCHAR(20),
   email VARCHAR(150) NOT NULL,
   company VARCHAR(200),
+<<<<<<< HEAD
   photo LONGBLOB, -- Changed from LONGTEXT to LONGBLOB for binary data
   photo_mime_type VARCHAR(50), -- Added to store the MIME type (e.g., 'image/png', 'image/jpeg')
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+=======
+  photo LONGTEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;    
+>>>>>>> 7d688a02aa63c2ca8791695c77e93e308165604d
