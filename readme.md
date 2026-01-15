@@ -1,4 +1,3 @@
-```md
 # Techoon Student Signup Form
 
 A responsive **Student Signup & Facecard Management** application built using **HTML, CSS, and JavaScript**, with an optional **Node.js + Express + MySQL** backend.
