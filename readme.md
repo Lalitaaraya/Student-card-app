@@ -158,19 +158,10 @@ npm start
 
 ---
 
-## 🌐 Access the Application
-
-* Student Registration
-  👉 [http://localhost:3000/form.html](http://localhost:3000/form.html)
-
-* Student Cards View
-  👉 [http://localhost:3000/students.html](http://localhost:3000/students.html)
-
----
 
 ## 🧠 Face Detection & Avatar Notes
 
-* Uses **BlazeFace** for client-side face detection
+* Can use **BlazeFace** for client-side face detection
 * BlazeFace models can be served locally from:
 
   ```
