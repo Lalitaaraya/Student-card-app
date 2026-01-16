@@ -61,10 +61,14 @@ Student-card-app-main/
 │   ├── package.json
 │   ├── package-lock.json
 │   └── server.js
+
+├── Frontend/
 │
 ├── form.html
 ├── students.html
+    ├── CSS/
 ├── style.css
+    ├── Validators/
 ├── script.js
 ├── students.js
 └── readme.md
